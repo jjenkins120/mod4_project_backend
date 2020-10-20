@@ -13,7 +13,7 @@ User.destroy_all
 
 puts "Seeding Users"
 
-20.times do 
+5.times do 
     User.create(
         username: Faker::Internet.email,
         password: 123,
@@ -23,12 +23,21 @@ puts "Seeding Users"
     )
 end 
 
+User.create(
+    username: 'jjenkins120',
+    password: 123,
+    email: 'jjenkins120@gmail.com',
+    first_name: 'Jeff',
+    last_name: 'Jenkins'
+)
+
 puts "Seeding Notes"
 
-100.times do
+50.times do
     Note.create(
         title: Faker::Book.title, 
-        content: Faker::Movies::Lebowski.quote, 
+        content: Faker::Movies::Lebowski.quote,
+        favorite: Faker::Boolean.boolean,
         user_id: User.all.sample.id
     )
 end 

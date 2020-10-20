@@ -34,6 +34,11 @@ class UsersController < ApplicationController
         render json: { message: 'success'}
     end
 
+    def login
+        @user = User.find_by(username: params[:username])
+        render json: @user
+    end
+
     private
 
     def user_params
