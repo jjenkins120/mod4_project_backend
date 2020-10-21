@@ -12,20 +12,18 @@ class NotesController < ApplicationController
 
     def create
         @note = Note.new(note_params)
-        if @note.save
-            render json: @note
-        else
-            render json: @note.errors
-        end
+        # if @note.save
+        #     render json: @note
+        # else
+        #     render json: @note.errors
+        # end
+        @note.save
     end
 
     def update
         @note = Note.find(params[:id])
-        if @note.update
-            render json: @note
-        else
-            render json: @note.errors
-        end
+        @note.update(note_params)
+        render json: @note
     end
 
     def destroy
@@ -37,7 +35,7 @@ class NotesController < ApplicationController
     private
 
     def note_params
-        params.require(:note).permit(:title, :content, :user_id)
+        params.require(:note).permit(:title, :content, :user_id, :favorite, :likes)
     end
 
 end

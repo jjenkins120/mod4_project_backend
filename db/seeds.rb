@@ -33,12 +33,13 @@ User.create(
 
 puts "Seeding Notes"
 
-50.times do
+10.times do
     Note.create(
         title: Faker::Book.title, 
         content: Faker::Movies::Lebowski.quote,
         favorite: Faker::Boolean.boolean,
-        user_id: User.all.sample.id
+        user_id: User.all.sample.id,
+        likes: rand(1..100)
     )
 end 
 

@@ -20,12 +20,15 @@ class UsersController < ApplicationController
     end
 
     def update
+        # @user = User.find(params[:id])
+        # if @user.update
+        #     render json: @user
+        # else    
+        #     render json: @user.errors
+        # end
         @user = User.find(params[:id])
-        if @user.update
-            render json: @user
-        else    
-            render json: @user.errors
-        end
+        @user.update(user_params)
+        render json: @user
     end
 
     def destroy
@@ -36,6 +39,11 @@ class UsersController < ApplicationController
 
     def login
         @user = User.find_by(username: params[:username])
+        # if @user && @user.authenticate(params[:password])
+        #     render json: @user
+        # else 
+        #     render json: {error: "Invalid username or password"}
+        # end
         render json: @user
     end
 
