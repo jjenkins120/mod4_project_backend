@@ -11,12 +11,21 @@ class UsersController < ApplicationController
     end
 
     def create
-        @user = User.new(user_params)
-        if @user.save
-            render json: @user
-        else
-            render json: @user.errors
-        end
+        @user = User.create(user_params)
+        byebug
+        # if @user.save
+        #     render json: @user
+        # else
+        #     render json: @user.errors
+        # end
+        # username: '',
+        # password: '',
+        # first_name: '',
+        # last_name: ''
+        # @user.save
+        # byebug
+        render json: @user
+
     end
 
     def update
@@ -39,12 +48,13 @@ class UsersController < ApplicationController
 
     def login
         @user = User.find_by(username: params[:username])
-        # if @user && @user.authenticate(params[:password])
-        #     render json: @user
-        # else 
-        #     render json: {error: "Invalid username or password"}
-        # end
-        render json: @user
+        if @user && @user.authenticate(params[:password])
+            render json: @user
+        else 
+            render json: {error: "Spin again, friend. Invalid username or password"}
+        end
+        # byebug
+        # render json: @user
     end
 
     private

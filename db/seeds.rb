@@ -16,7 +16,7 @@ puts "Seeding Users"
 5.times do 
     User.create(
         username: Faker::Internet.email,
-        password: 123,
+        password: '123',
         email: Faker::Internet.email,
         first_name: Faker::Name.first_name,
         last_name: Faker::Name.last_name 
@@ -25,7 +25,7 @@ end
 
 User.create(
     username: 'jjenkins120',
-    password: 123,
+    password: '123',
     email: 'jjenkins120@gmail.com',
     first_name: 'Jeff',
     last_name: 'Jenkins'
