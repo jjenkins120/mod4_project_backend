@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-    
+    wrap_parameters :user, include: [:username, :password, :email, :first_name, :last_name]
+
     def index
         @users = User.all 
         render json: @users
@@ -12,29 +13,11 @@ class UsersController < ApplicationController
 
     def create
         @user = User.create(user_params)
-        byebug
-        # if @user.save
-        #     render json: @user
-        # else
-        #     render json: @user.errors
-        # end
-        # username: '',
-        # password: '',
-        # first_name: '',
-        # last_name: ''
-        # @user.save
-        # byebug
         render json: @user
 
     end
 
     def update
-        # @user = User.find(params[:id])
-        # if @user.update
-        #     render json: @user
-        # else    
-        #     render json: @user.errors
-        # end
         @user = User.find(params[:id])
         @user.update(user_params)
         render json: @user
@@ -53,8 +36,6 @@ class UsersController < ApplicationController
         else 
             render json: {error: "Spin again, friend. Invalid username or password"}
         end
-        # byebug
-        # render json: @user
     end
 
     private
